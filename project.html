@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="data.js"></script>
+</head>
+<body>
+    <div>
+        <input type="text" id="s">
+        <button onclick="searchdata()">Search</button>
+    </div>
+    <table id="tab" border="1px">
+      <thead>
+        <tr>
+        <th onclick="sortdata('title')">Title</th>
+        <th onclick="sortdata('isbn')">isbn</th>
+        <th onclick="sortdata('pageCount')">pageCount</th>
+        <th onclick="sortdata('publishedDate')">publishedDate</th>
+        <th onclick="sortdata('thumbnailUrl')">thumbnailUrl</th>
+        <th onclick="sortdata('shortDescription')">shortDescription</th>
+        <th onclick="sortdata('longDescription')">longDescription</th>
+        <th onclick="sortdata('status')">status</th>
+        <th onclick="sortdata('authors')">authors</th>
+        <th onclick="sortdata('categories')">categories</th>
+        <th onclick="sortdata('price')">price</th>
+        <th onclick="sortdata('currency')">currency</th>
+        <th onclick="sortdata('discount')">discount</th>
+        <th onclick="sortdata('discountUnits')">discountUnits</th>
+        </tr>
+      </thead>
+        <tbody id="body"></tbody>
+    </table>
+    <button onclick="next()">Next</button>
+    <script>
+var first=0;
+var last=10;
+function genTable(first,last){
+  document.getElementById("body").innerText=''
+    data.forEach(function(card,i){
+        if(i>=first&&i<last){
+            var ntr=document.createElement("tr");
+            var tdTitle=document.createElement("td");
+            tdTitle.innerText=card.title;
+            ntr.appendChild(tdTitle);
+            var tdIsbn=document.createElement("td");
+            tdIsbn.innerText=card.isbn;
+            ntr.appendChild(tdIsbn);
+            var tdpageCount=document.createElement("td");
+            tdpageCount.innerText=card.pageCount;
+            ntr.appendChild(tdpageCount);
+             var tdpublishedDate=document.createElement("td");
+            tdpublishedDate.innerText=card.publishedDate.$date;
+            ntr.appendChild(tdpublishedDate);
+            var tdthumbnailUrl=document.createElement("td");
+            var image=document.createElement("img");
+            image.src=card.thumbnailUrl;
+            tdthumbnailUrl.appendChild(image);
+            ntr.appendChild(tdthumbnailUrl);
+            var tdshortDescription=document.createElement("td");
+            tdshortDescription.innerText=card.shortDescription;
+            ntr.appendChild(tdshortDescription);
+            var tdlongDescription=document.createElement("td");
+            tdlongDescription.innerText=card.longDescription;
+            ntr.appendChild(tdlongDescription);
+            var tdstatus=document.createElement("td");
+            tdstatus.innerText=card.status;
+            ntr.appendChild(tdstatus);
+            var tdauthors=document.createElement("td");
+            tdauthors.innerText=card.authors;
+            ntr.appendChild(tdauthors);
+            var tdcategories=document.createElement("td");
+            tdcategories.innerText=card.categories;
+            ntr.appendChild(tdcategories);
+            var tdprice=document.createElement("td");
+            tdprice.innerText=card.price;
+            ntr.appendChild(tdprice);
+            var tdcurrency=document.createElement("td");
+            tdcurrency.innerText=card.currency;
+            ntr.appendChild(tdcurrency);
+            var tddiscount=document.createElement("td");
+            tddiscount.innerText=card.discount;
+            ntr.appendChild(tddiscount);
+            var tddiscountUnits=document.createElement("td");
+            tddiscountUnits.innerText=card.discountUnits;
+            ntr.appendChild(tddiscountUnits);
+            document.getElementById("body").appendChild(ntr);
+        }
+    }) 
+}
+genTable(first,last);
+function next(){
+    genTable(last,last+=10);
+}
+// function sortdata(k){
+//   data.sort(function (a1, a2) {
+//                 if (a1[k] > a2[k]) { return 1 }
+//                 else { return -1 };
+   
+//   })
+//   document.getElementById("body").innerText=''
+//   genTable();
+// }
+// function searchdata(){
+//     var ele=getElementById("s").value;
+// }
+    </script>
+</body>
+</html>
